@@ -70,13 +70,18 @@ def test_customer_references_flag_unknown_customer():
     results = validate_customers(
         customers,
         sales,
-        {"id_field": "customer_id", "active_field": "active_flag", "active_values": ["Y"]},
+        {
+            "id_field": "customer_id",
+            "active_field": "active_flag",
+            "active_values": ["Y"],
+            "reference_mapping_verified": True,
+        },
         COLUMNS,
     )
 
     reference = next(item for item in results if item.validation_id == "STG-CUSTOMER-REF")
     assert reference.status == "FAIL"
-    assert reference.record_key == "C-404"
+    assert reference.actual_value == "unresolved_rows=1; distinct_unresolved_ids=1"
 
 
 def test_policy_reference_is_checked_when_available():

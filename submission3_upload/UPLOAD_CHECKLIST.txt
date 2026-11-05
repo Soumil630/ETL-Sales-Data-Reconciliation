@@ -1,0 +1,28 @@
+Submission 3 upload checklist
+=============================
+
+Prepared package: submission3_upload.zip
+Prepared folder: submission3_upload
+Latest validation report: 2026-11-05 08:55:55 UTC
+
+Included:
+[x] Latest QA summary, including distinct-check and result-row counts
+[x] Sanitized latest-run validation report with no row-level identifiers/values
+[x] Latest generated HTML QA summary
+[x] Layer coverage matrix with partial and not-run scope identified
+[x] Updated defect log and evidence index
+[x] Correlated, sanitized log for the latest run
+[x] Assignment source-document index and repository link
+[x] ZIP rebuilt from the current submission3_upload folder
+
+Before upload:
+[ ] Upload submission3_upload.zip (or all folder contents) through the portal
+[ ] Verify mentors can open the uploaded files and repository link
+[ ] Obtain data-owner confirmation of customer-ID mapping, duplicate-key rules,
+    and customer-PAN handling; rerun the affected checks after confirmation
+[ ] Obtain and execute aggregate-model and reporting/dashboard requirements, or
+    get written confirmation those layers are out of scope
+
+The package is current sanitized execution evidence, not full pipeline sign-off.
+Do not upload raw reports/validation_results.csv, reports/reconciliation_report.csv,
+output/validation_details.csv, credentials, source datasets, or synthetic demo logs.

@@ -23,6 +23,7 @@ def test_customer_id_and_policy_references_are_validated():
             "id_field": "customer_id",
             "active_field": "active",
             "active_values": ["Y"],
+            "reference_mapping_verified": True,
             "source_policy_field": "policy",
             "master_policy_field": "policy",
         },
@@ -30,8 +31,34 @@ def test_customer_id_and_policy_references_are_validated():
     )
 
     by_id = {item.validation_id: item for item in results}
-    assert by_id["STG-CUSTOMER-REF"].actual_value == "1"
+    assert by_id["STG-CUSTOMER-REF"].actual_value == (
+        "unresolved_rows=1; distinct_unresolved_ids=1"
+    )
     assert by_id["STG-CUSTOMER-POLICY-REF"].actual_value == "1"
+
+
+def test_unconfirmed_customer_mapping_blocks_reference_check_and_counts_rows():
+    customers = pd.DataFrame([{"customer_id": "C-1"}])
+    sales = pd.DataFrame(
+        [{"customer_id": "C-404"}, {"customer_id": "C-404"}, {"customer_id": "C-405"}]
+    )
+
+    reference = next(
+        item
+        for item in validate_customers(
+            customers,
+            sales,
+            {"id_field": "customer_id"},
+            {"customer_id": "customer_id"},
+        )
+        if item.validation_id == "STG-CUSTOMER-REF"
+    )
+
+    assert reference.status == "BLOCKED"
+    assert reference.actual_value == (
+        "unresolved_rows=3; distinct_unresolved_ids=2"
+    )
+    assert reference.variance == "3"
 
 
 def test_duplicate_customer_ids_fail_uniqueness_check():

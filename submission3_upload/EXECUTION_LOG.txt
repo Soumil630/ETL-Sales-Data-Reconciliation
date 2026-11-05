@@ -1,0 +1,31 @@
+Sanitized latest validation execution log
+=========================================
+Report generated UTC: 2026-11-05T08:55:55Z
+Source: workspace logs/execution.log; original timestamp timezone not stated.
+Credentials, configuration/input paths, row keys, and compared values omitted.
+
+2026-11-05 08:55:12,437 Run started (config path omitted)
+2026-11-05 08:55:12,437 Validation started
+2026-11-05 08:55:55,329 Reports generated (details omitted)
+2026-11-05 08:55:55,408 Check result; layer=Source-to-Staging validation_id=LOAD-CUSTOMERS status=PASS result_rows=1
+2026-11-05 08:55:55,408 Check result; layer=Source-to-Staging validation_id=LOAD-DISTRIBUTOR_SALES_JSON status=PASS result_rows=1
+2026-11-05 08:55:55,409 Check result; layer=Source-to-Staging validation_id=STG-CUSTOMER-IDS status=FAIL result_rows=1
+2026-11-05 08:55:55,410 Check result; layer=Source-to-Staging validation_id=STG-CUSTOMER-MANDATORY status=PASS result_rows=1
+2026-11-05 08:55:55,410 Check result; layer=Source-to-Staging validation_id=STG-CUSTOMER-POLICY-REF status=PASS result_rows=1
+2026-11-05 08:55:55,412 Check result; layer=Source-to-Staging validation_id=STG-CUSTOMER-REF status=BLOCKED result_rows=1
+2026-11-05 08:55:55,412 Check result; layer=Source-to-Staging validation_id=STG-CUSTOMER-SCHEMA status=PASS result_rows=1
+2026-11-05 08:55:55,412 Check result; layer=Source-to-Staging validation_id=STG-DATE status=PASS result_rows=1
+2026-11-05 08:55:55,412 Check result; layer=Source-to-Staging validation_id=STG-DUPLICATES status=PASS result_rows=1
+2026-11-05 08:55:55,413 Check result; layer=Source-to-Staging validation_id=STG-NULLS status=FAIL result_rows=1
+2026-11-05 08:55:55,413 Check result; layer=Source-to-Staging validation_id=STG-NUM-COMMISSION_AMOUNT status=PASS result_rows=1
+2026-11-05 08:55:55,413 Check result; layer=Source-to-Staging validation_id=STG-NUM-GROSS_AMOUNT status=PASS result_rows=1
+2026-11-05 08:55:55,413 Check result; layer=Source-to-Staging validation_id=STG-SCHEMA status=PASS result_rows=1
+2026-11-05 08:55:55,419 Check result; layer=Staging-to-Data Mart validation_id=DM-DUPLICATES status=PASS result_rows=1
+2026-11-05 08:55:55,420 Check result; layer=Staging-to-Data Mart validation_id=DM-EXTRA status=PASS result_rows=1
+2026-11-05 08:55:55,420 Check result; layer=Staging-to-Data Mart validation_id=DM-FIELD-MISMATCH status=FAIL result_rows=40575
+2026-11-05 08:55:55,422 Check result; layer=Staging-to-Data Mart validation_id=DM-FIELD-SUMMARY status=FAIL result_rows=1
+2026-11-05 08:55:55,422 Check result; layer=Staging-to-Data Mart validation_id=DM-MISSING status=FAIL result_rows=1
+2026-11-05 08:55:55,423 Check result; layer=Staging-to-Data Mart validation_id=DM-ROW-COUNT status=FAIL result_rows=1
+2026-11-05 08:55:55,423 Check result; layer=Staging-to-Data Mart validation_id=LOAD-TARGET status=PASS result_rows=1
+2026-11-05 08:55:55,423 Run summary; result_rows=40594 PASS=13 FAIL=40580 BLOCKED=1 exit_code=1
+2026-11-05 08:55:55,424 Run finished; exit_code=1

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -207,17 +208,43 @@ def main() -> int:
         ],
         force=True,
     )
+    logger = logging.getLogger("assignment2")
+    logger.info("Run started; config=%s", args.config.resolve())
     try:
         results = run(args.config)
     except Exception:
-        logging.exception("Validation could not start")
+        logger.exception("Validation could not start")
+        logger.error("Run finished; exit_code=2")
         return 2
     counts = {status: sum(item.status == status for item in results) for status in ("PASS", "FAIL", "BLOCKED")}
+    check_counts = Counter(
+        (item.layer, item.validation_id, item.validation_name, item.status)
+        for item in results
+    )
+    for (layer, validation_id, name, status), result_count in sorted(check_counts.items()):
+        logger.info(
+            "Check result; layer=%s validation_id=%s status=%s result_rows=%s name=%s",
+            layer,
+            validation_id,
+            status,
+            result_count,
+            name,
+        )
     print(
         f"Validations: {len(results)} | PASS: {counts['PASS']} | "
         f"FAIL: {counts['FAIL']} | BLOCKED: {counts['BLOCKED']}"
     )
-    return 1 if counts["FAIL"] or counts["BLOCKED"] else 0
+    exit_code = 1 if counts["FAIL"] or counts["BLOCKED"] else 0
+    logger.info(
+        "Run summary; validations=%s PASS=%s FAIL=%s BLOCKED=%s exit_code=%s",
+        len(results),
+        counts["PASS"],
+        counts["FAIL"],
+        counts["BLOCKED"],
+        exit_code,
+    )
+    logger.info("Run finished; exit_code=%s", exit_code)
+    return exit_code
 
 
 if __name__ == "__main__":

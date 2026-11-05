@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>QA Summary</title>
+<style>body{font:15px system-ui,sans-serif;max-width:1100px;margin:2rem auto;padding:0 1rem;color:#18222d}h1,h2{color:#12344a}table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{border:1px solid #ccd5dc;padding:.5rem;text-align:left}th{background:#edf3f6}.PASS{color:#176b3a}.FAIL{color:#a32121}.BLOCKED{color:#805500}</style>
+</head><body>
+<h1>QA Validation Summary</h1>
+<p>Generated UTC: 2026-11-05T08:55:55+00:00</p>
+<h2>Result rows</h2><p>Each row is one validation result; row-level field mismatches are counted individually.</p><ul><li class="PASS">PASS: 13</li><li class="FAIL">FAIL: 40580</li><li class="BLOCKED">BLOCKED: 1</li></ul><h2>Distinct validation IDs by outcome</h2><ul><li class="PASS">PASS: 13</li><li class="FAIL">FAIL: 6</li><li class="BLOCKED">BLOCKED: 1</li></ul><h2>Input/target loads</h2><ul><li>50000 rows</li><li>50000 records</li><li>45076 rows</li></ul><h2>Checks by validation</h2><table border="1" class="dataframe results">
+  <thead>
+    <tr style="text-align: right;">
+      <th>layer</th>
+      <th>validation_id</th>
+      <th>validation_name</th>
+      <th>status</th>
+      <th>result_rows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>LOAD-CUSTOMERS</td>
+      <td>Load Customer Master file</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>LOAD-DISTRIBUTOR_SALES_JSON</td>
+      <td>Load distributor_sales_json</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-CUSTOMER-IDS</td>
+      <td>Customer IDs present and unique</td>
+      <td>FAIL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-CUSTOMER-MANDATORY</td>
+      <td>Customer Master mandatory fields</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-CUSTOMER-POLICY-REF</td>
+      <td>Sales policy references resolve</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-CUSTOMER-REF</td>
+      <td>Sales customer references resolve</td>
+      <td>BLOCKED</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-CUSTOMER-SCHEMA</td>
+      <td>Customer Master required ID field</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-DATE</td>
+      <td>distributor_sales_json sales date format</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-DUPLICATES</td>
+      <td>distributor_sales_json transaction uniqueness</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-NULLS</td>
+      <td>distributor_sales_json mandatory fields</td>
+      <td>FAIL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-NUM-COMMISSION_AMOUNT</td>
+      <td>distributor_sales_json commission_amount numeric format</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-NUM-GROSS_AMOUNT</td>
+      <td>distributor_sales_json gross_amount numeric format</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Source-to-Staging</td>
+      <td>STG-SCHEMA</td>
+      <td>distributor_sales_json required columns</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Staging-to-Data Mart</td>
+      <td>DM-DUPLICATES</td>
+      <td>Duplicate transaction keys</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Staging-to-Data Mart</td>
+      <td>DM-EXTRA</td>
+      <td>Unexpected target records</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Staging-to-Data Mart</td>
+      <td>DM-FIELD-MISMATCH</td>
+      <td>Field comparison: customer_pan</td>
+      <td>FAIL</td>
+      <td>40575</td>
+    </tr>
+    <tr>
+      <td>Staging-to-Data Mart</td>
+      <td>DM-FIELD-SUMMARY</td>
+      <td>Field-level reconciliation</td>
+      <td>FAIL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Staging-to-Data Mart</td>
+      <td>DM-MISSING</td>
+      <td>Source records missing in target</td>
+      <td>FAIL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Staging-to-Data Mart</td>
+      <td>DM-ROW-COUNT</td>
+      <td>Source and target row counts</td>
+      <td>FAIL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Staging-to-Data Mart</td>
+      <td>LOAD-TARGET</td>
+      <td>Read target data</td>
+      <td>PASS</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</body></html>

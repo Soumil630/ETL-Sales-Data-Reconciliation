@@ -1,0 +1,5 @@
+layer,coverage_status,checks_executed,passed,failed,blocked,checks_not_run,execution_timestamp_utc,coverage_notes,evidence
+Source-to-Staging,PARTIAL,13,10,2,1,0,2026-11-05T08:55:55Z,"Configured distributor sales and customer-master file checks executed; the customer-ID reference comparison is blocked pending approved mapping. Retail CSV, Online API, and other master-data feeds were not evidenced.","VALIDATION_EXECUTION_REPORT.csv"
+Staging-to-Data Mart,PARTIAL,7,3,4,0,0,2026-11-05T08:55:55Z,"Configured read-only target query succeeded. Row-count, missing-key, field-mismatch, and field-summary checks failed; see sanitized counts. Aggregate-model and reporting layers are not included here.","VALIDATION_EXECUTION_REPORT.csv; QA_SUMMARY.html"
+Aggregate Model,NOT RUN,0,0,0,0,0,,"No aggregate model specification, expected totals, or execution results were available.","EVIDENCE_INDEX.csv#EVD-006"
+Reporting/Dashboard,NOT RUN,0,0,0,0,0,,"No accessible dashboard/reporting environment, metric specification, or execution results were available.","EVIDENCE_INDEX.csv#EVD-007"

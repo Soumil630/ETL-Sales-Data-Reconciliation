@@ -26,14 +26,20 @@ def load_target(config: dict[str, Any], base_dir: Path) -> tuple[pd.DataFrame, s
         raise ValueError("Target query must be one read-only SELECT statement")
     database = config.get("database", {})
     user_env = str(database.get("user_env", ""))
-    user = os.environ.get(user_env) if user_env else database.get("user")
+    user = (os.environ.get(user_env) if user_env else None) or database.get("user")
     if not user:
-        raise ValueError(f"Database user environment variable is unset: {user_env or '(not configured)'}")
+        raise ValueError(
+            "Database user is unset; configure database.user or "
+            f"the {user_env or 'database.user_env'} environment variable"
+        )
     password_env = str(database.get("password_env", ""))
-    password = os.environ.get(password_env) if password_env else None
+    password = (os.environ.get(password_env) if password_env else None) or database.get(
+        "password"
+    )
     if not password:
         raise ValueError(
-            f"Database password environment variable is unset: {password_env or '(not configured)'}"
+            "Database password is unset; configure database.password or "
+            f"the {password_env or 'database.password_env'} environment variable"
         )
 
     import mysql.connector

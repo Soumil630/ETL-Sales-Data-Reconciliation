@@ -93,7 +93,9 @@ def validate_customers(
             valid_ids = set(ids[active_mask & ids.ne("")])
         sales_ids = sales[sales_id].astype(str).str.strip()
         invalid = sales_ids.ne("") & ~sales_ids.isin(valid_ids)
-        invalid_ids = sales_ids[invalid].unique().tolist()
+        invalid_rows = int(invalid.sum())
+        invalid_id_count = int(sales_ids[invalid].nunique())
+        mapping_verified = customer_config.get("reference_mapping_verified") is True
         output.append(
             result(
                 "STG-CUSTOMER-REF",
@@ -101,11 +103,23 @@ def validate_customers(
                 "Sales customer references resolve",
                 "Distributor Sales file",
                 "Customer Master file",
-                "all sales customer IDs exist and are active",
-                len(invalid_ids),
-                "FAIL" if invalid_ids else "PASS",
-                len(invalid_ids),
-                record_key=", ".join(invalid_ids[:20]),
+                "all sales customer IDs resolve through the approved mapping",
+                f"unresolved_rows={invalid_rows}; distinct_unresolved_ids={invalid_id_count}",
+                (
+                    "FAIL"
+                    if mapping_verified and invalid_rows
+                    else "PASS"
+                    if mapping_verified
+                    else "BLOCKED"
+                ),
+                invalid_rows,
+                remarks=(
+                    ""
+                    if mapping_verified
+                    else "Customer identifier mapping has not been confirmed. "
+                    "Set reference_mapping_verified=true only after the approved "
+                    "mapping is documented; these counts use direct ID equality."
+                ),
             )
         )
 

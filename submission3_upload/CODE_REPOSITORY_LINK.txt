@@ -1,0 +1,11 @@
+Final code repository/workspace link
+====================================
+
+Repository URL:
+https://github.com/Soumil630/ETL-Sales-Data-Reconciliation
+
+The repository page was reachable without authentication when this package was
+prepared. Confirm that mentors can access the required branch and that it contains
+the code version used for validation. The local workspace path is not a shareable
+mentor link. The package ZIP contains the latest submission artifacts for direct
+portal upload if they are not yet present in the repository.

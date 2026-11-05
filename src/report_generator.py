@@ -33,6 +33,11 @@ def generate_reports(
         if not details.empty
         else {}
     )
+    check_counts = (
+        details.groupby("status")["validation_id"].nunique().to_dict()
+        if not details.empty
+        else {}
+    )
     grouped = (
         details.groupby(["layer", "validation_id", "validation_name", "status"])
         .size()
@@ -49,9 +54,12 @@ def generate_reports(
 </head><body>
 <h1>QA Validation Summary</h1>
 <p>Generated UTC: """ + escape(datetime.now(timezone.utc).isoformat(timespec="seconds")) + """</p>
-<h2>Summary</h2><ul>"""
+<h2>Result rows</h2><p>Each row is one validation result; row-level field mismatches are counted individually.</p><ul>"""
     for status in ("PASS", "FAIL", "BLOCKED"):
         report_html += f'<li class="{status}">{status}: {int(status_counts.get(status, 0))}</li>'
+    report_html += "</ul><h2>Distinct validation IDs by outcome</h2><ul>"
+    for status in ("PASS", "FAIL", "BLOCKED"):
+        report_html += f'<li class="{status}">{status}: {int(check_counts.get(status, 0))}</li>'
     report_html += "</ul><h2>Input/target loads</h2><ul>"
     report_html += "".join(f"<li>{escape(value)}</li>" for value in rows_processed)
     report_html += "</ul><h2>Checks by validation</h2>"
