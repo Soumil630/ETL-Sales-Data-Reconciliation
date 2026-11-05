@@ -9,6 +9,7 @@ Included:
 [x] Latest QA summary, including distinct-check and result-row counts
 [x] Sanitized latest-run validation report with no row-level identifiers/values
 [x] Latest generated HTML QA summary
+[x] Stakeholder QA briefing (HTML slide deck, print-ready)
 [x] Layer coverage matrix with partial and not-run scope identified
 [x] Updated defect log and evidence index
 [x] Correlated, sanitized log for the latest run

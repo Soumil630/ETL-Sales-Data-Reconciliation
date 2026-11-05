@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Distributor Sales Pipeline — QA Briefing</title>
+<style>
+:root{--ink:#132238;--muted:#52647a;--navy:#12385a;--blue:#1c6e8c;--pale:#eef5f8;--line:#d5e0e8;--red:#a53232;--amber:#8a5b08;--green:#226844;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#e8eef2;color:var(--ink);font:16px/1.48 "Segoe UI",Arial,sans-serif}
+.toolbar{position:sticky;top:0;z-index:2;display:flex;justify-content:center;gap:.6rem;padding:.7rem;background:#102f4a;color:white}
+.toolbar a{color:white;text-decoration:none;border:1px solid #8da7ba;border-radius:4px;padding:.3rem .65rem;font-size:.9rem}
+.deck{max-width:1120px;margin:1.2rem auto}
+.slide{position:relative;min-height:630px;margin:0 0 1.2rem;padding:3.3rem 4rem 3rem;background:var(--white);box-shadow:0 8px 26px #17314b18;scroll-margin-top:70px;overflow:hidden}
+.slide:before{content:"";position:absolute;inset:0 auto 0 0;width:10px;background:linear-gradient(var(--blue),#7fb0b4)}
+.kicker{color:var(--blue);font-size:.82rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+h1{font-size:3rem;line-height:1.05;margin:.55rem 0 1rem;color:var(--navy)}
+h2{font-size:2rem;line-height:1.14;margin:.45rem 0 1.5rem;color:var(--navy)}
+h3{font-size:1.12rem;margin:.2rem 0 .45rem}
+p{margin:.5rem 0 .9rem}
+.lead{font-size:1.25rem;color:var(--muted);max-width:850px}
+.meta{margin-top:2rem;color:var(--muted)}
+.callout{margin:1rem 0;padding:1rem 1.15rem;border-left:5px solid var(--blue);background:var(--pale);border-radius:0 5px 5px 0}
+.callout.warn{border-color:var(--amber);background:#fff7e8}
+.callout.alert{border-color:var(--red);background:#fff0ef}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}
+.card{padding:1rem 1.1rem;border:1px solid var(--line);border-radius:7px;background:#fbfdfe}
+.metric{font-size:2rem;font-weight:750;color:var(--navy);line-height:1.1}
+.metric-label{color:var(--muted);font-size:.95rem;margin-top:.35rem}
+.tag{display:inline-block;padding:.18rem .55rem;border-radius:999px;font-size:.82rem;font-weight:700;background:#edf1f4;color:var(--ink)}
+.tag.fail{background:#ffebea;color:var(--red)}
+.tag.block{background:#fff2d6;color:var(--amber)}
+.tag.pass{background:#e5f4eb;color:var(--green)}
+ul,ol{padding-left:1.25rem}
+li{margin:.48rem 0}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.96rem}
+th,td{text-align:left;padding:.68rem .72rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--navy);background:#f1f6f8}
+.small{font-size:.88rem;color:var(--muted)}
+.slide-footer{position:absolute;bottom:1.1rem;left:4rem;right:4rem;display:flex;justify-content:space-between;color:#718096;font-size:.82rem;border-top:1px solid var(--line);padding-top:.55rem}
+.controls{display:flex;justify-content:space-between;margin-top:1.2rem}
+.controls a{color:var(--blue);font-weight:650;text-decoration:none}
+@media(max-width:700px){.deck{margin:0}.slide{min-height:100vh;padding:2rem 1.5rem 4rem}.slide-footer{left:1.5rem;right:1.5rem}.grid{grid-template-columns:1fr}h1{font-size:2.35rem}h2{font-size:1.7rem}}
+@media print{
+ @page{size:landscape;margin:0}
+ body{background:white;font-size:14pt}
+ .toolbar,.controls{display:none!important}
+ .deck{max-width:none;margin:0}
+ .slide{width:100%;height:100vh;min-height:0;margin:0;padding:1.05in 1.15in .8in;box-shadow:none;break-after:page;page-break-after:always}
+ .slide:last-child{break-after:auto;page-break-after:auto}
+ .slide-footer{left:1.15in;right:1.15in;bottom:.35in}
+ a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<nav class="toolbar" aria-label="Slide navigation">
+<a href="#slide-1">1 Cover</a><a href="#slide-2">2 Outcome</a><a href="#slide-3">3 Findings</a><a href="#slide-4">4 Reference check</a><a href="#slide-5">5 Coverage</a><a href="#slide-6">6 Actions</a>
+</nav>
+<main class="deck">
+<section class="slide" id="slide-1">
+<div class="kicker">Mentor &amp; stakeholder briefing · 05 November 2026</div>
+<h1>Distributor Sales<br>Pipeline QA</h1>
+<p class="lead">What the latest automated validation established, what remains uncertain, and what decisions are needed next.</p>
+<div class="callout"><strong>Overall assessment:</strong> The configured source-to-staging and mart comparisons ran. Material mismatches were found, but customer-reference mapping and several business rules still require owner confirmation. This is not a full pipeline sign-off.</div>
+<p class="meta">Latest execution: 08:55:12–08:55:55 UTC · Read-only target query · 50,000 sales rows · 50,000 customer-master rows · 45,076 mart rows</p>
+<div class="slide-footer"><span>QA evidence snapshot</span><span>1 / 6</span></div>
+<div class="controls"><span></span><a href="#slide-2">Next →</a></div>
+</section>
+
+<section class="slide" id="slide-2">
+<div class="kicker">01 · Run outcome</div>
+<h2>Validation ran; data checks did not all pass</h2>
+<div class="grid">
+<div class="card"><div class="metric">20</div><div class="metric-label">distinct validation IDs</div></div>
+<div class="card"><div class="metric">13 / 6 / 1</div><div class="metric-label"><span class="tag pass">PASS</span> / <span class="tag fail">FAIL</span> / <span class="tag block">BLOCKED</span> IDs</div></div>
+<div class="card"><div class="metric">45,076</div><div class="metric-label">mart rows returned by read-only query</div></div>
+</div>
+<div class="callout alert"><strong>40,594 result rows is not 40,594 different checks.</strong> The 40,580 failed rows include 40,575 row-level customer-PAN mismatches plus five other failed result rows. Counts by distinct check ID are shown separately in the detailed package report.</div>
+<p>The process exited with code 1 because failures and a blocked check remain. Report generation completed successfully.</p>
+<p class="small">Run timestamp and outcomes are taken from the correlated execution log and generated validation reports. Row-level values and identifiers are intentionally omitted from this briefing.</p>
+<div class="slide-footer"><span>Source: latest sanitized execution evidence</span><span>2 / 6</span></div>
+<div class="controls"><a href="#slide-1">← Previous</a><a href="#slide-3">Next →</a></div>
+</section>
+
+<section class="slide" id="slide-3">
+<div class="kicker">02 · Key findings</div>
+<h2>Two material reconciliation gaps need investigation</h2>
+<table>
+<thead><tr><th>Finding</th><th>Observed result</th><th>Interpretation</th></tr></thead>
+<tbody>
+<tr><td>Mart completeness</td><td><strong>4,924</strong> source transaction keys missing; <strong>0</strong> extra target keys</td><td>Source: 50,000 rows; mart: 45,076 rows. Reconcile load scope, filters, and ETL run.</td></tr>
+<tr><td>Customer PAN comparison</td><td><strong>40,575</strong> matched rows differ</td><td>Could reflect an incorrect mapping, intended masking, or non-persistence. Confirm approved privacy and transformation rules.</td></tr>
+<tr><td>Required source field</td><td><strong>1,539</strong> blank sales `customer_id` values</td><td>Confirm whether this field is mandatory for every transaction or has approved exceptions.</td></tr>
+<tr><td>Customer-master uniqueness</td><td><strong>2,525</strong> rows participate in duplicate customer IDs</td><td>Confirm business key and intended one-to-many semantics; do not deduplicate without approval.</td></tr>
+</tbody></table>
+<div class="callout warn">Potential business impacts are provisional until data scope, key definitions, and approved transformation rules are confirmed by the data owner.</div>
+<div class="slide-footer"><span>Source: sanitized validation report and defect log</span><span>3 / 6</span></div>
+<div class="controls"><a href="#slide-2">← Previous</a><a href="#slide-4">Next →</a></div>
+</section>
+
+<section class="slide" id="slide-4">
+<div class="kicker">03 · Customer reference check</div>
+<h2>Why customer-reference integrity is blocked</h2>
+<p>The latest direct-ID comparison found <strong>48,461 unresolved sales rows</strong> across <strong>44,753 distinct nonblank IDs</strong>. These are exploratory counts—not proof that the records are invalid.</p>
+<ul>
+<li>The lab ETL script documents a join from distributor sales to Customer Master on `customer_id`, then selects `customer_key`.</li>
+<li>Read-only comparison of supplied input files found no shared nonblank sales and master `customer_id` values.</li>
+<li>All 50,000 distinct sales policy numbers appear in the Customer Master policy-number set, but the available ETL script does not use policy number for this join.</li>
+<li>No separate approved crosswalk or instruction to substitute policy number was found.</li>
+</ul>
+<div class="callout warn"><strong>Decision required:</strong> Data owner/mentor to confirm the authoritative key, active-customer rule, and treatment of duplicate IDs. Do not mark the check verified or change the join based on overlap alone.</div>
+<p class="small">Supporting analysis: WHY_STG_CUSTOMER_REF_IS_BLOCKED.md. The validation currently emits BLOCKED by design until the mapping is approved.</p>
+<div class="slide-footer"><span>Source: lab ETL SQL and aggregate-only input comparisons</span><span>4 / 6</span></div>
+<div class="controls"><a href="#slide-3">← Previous</a><a href="#slide-5">Next →</a></div>
+</section>
+
+<section class="slide" id="slide-5">
+<div class="kicker">04 · Scope and evidence</div>
+<h2>Execution coverage is partial, not end-to-end</h2>
+<table>
+<thead><tr><th>Layer</th><th>Status</th><th>What was covered / not covered</th></tr></thead>
+<tbody>
+<tr><td>Source-to-Staging</td><td><span class="tag block">PARTIAL</span></td><td>13 checks: 10 pass, 2 fail, 1 blocked. Configured sales and customer-master loads and data-quality checks ran; customer-ID reference check blocked pending mapping approval.</td></tr>
+<tr><td>Staging-to-Data Mart</td><td><span class="tag fail">PARTIAL</span></td><td>7 checks: 3 pass, 4 fail. Read-only target query and transaction/field reconciliation ran; completeness and customer-PAN checks failed.</td></tr>
+<tr><td>Aggregate Model</td><td><span class="tag">NOT RUN</span></td><td>No approved aggregate specification or expected totals provided.</td></tr>
+<tr><td>Reporting / Dashboard</td><td><span class="tag">NOT RUN</span></td><td>No accessible report/dashboard environment or metric/filter specification provided.</td></tr>
+</tbody></table>
+<p>Submission evidence includes a sanitized check-level report, generated HTML QA summary, defect log, layer-coverage matrix, evidence index, and a correlated sanitized run log. Raw row-level outputs and credentials are excluded.</p>
+<p class="small">Evidence: <a href="VALIDATION_EXECUTION_REPORT.csv">validation report</a> · <a href="QA_SUMMARY.html">HTML QA summary</a> · <a href="DEFECT_LOG.csv">defect log</a> · <a href="EVIDENCE_INDEX.csv">evidence index</a> · <a href="EXECUTION_LOG.txt">execution log</a> · <a href="CODE_REPOSITORY_LINK.txt">code repository</a>.</p>
+<div class="slide-footer"><span>See package evidence index for provenance and handling</span><span>5 / 6</span></div>
+<div class="controls"><a href="#slide-4">← Previous</a><a href="#slide-6">Next →</a></div>
+</section>
+
+<section class="slide" id="slide-6">
+<div class="kicker">05 · Recommended decisions and next steps</div>
+<h2>Resolve assumptions, then retest before sign-off</h2>
+<ol>
+<li><strong>Confirm customer mapping:</strong> approve the sales-to-master key, active status rule, and duplicate handling.</li>
+<li><strong>Investigate mart completeness:</strong> confirm source/target scope and ETL filters, then reconcile the 4,924 missing keys.</li>
+<li><strong>Confirm PAN policy:</strong> determine whether PAN should be persisted, transformed, or masked; rerun comparison under approved rules.</li>
+<li><strong>Disposition source defects:</strong> confirm whether blank sales customer IDs are allowed and whether duplicate master IDs are valid.</li>
+<li><strong>Complete remaining layers:</strong> obtain aggregate/report requirements and dashboard evidence, or formal agreement they are out of scope.</li>
+</ol>
+<div class="callout"><strong>Current recommendation:</strong> Keep QA status open. The automation produced useful, reproducible evidence, but unresolved data gaps and missing layer requirements prevent end-to-end approval.</div>
+<p class="small">This briefing is a stakeholder summary, not an approval record. Detailed counts and evidence references are in VALIDATION_EXECUTION_REPORT.csv and DEFECT_LOG.csv.</p>
+<p class="small">Supporting links: <a href="WHY_STG_CUSTOMER_REF_IS_BLOCKED.md">customer-reference mapping analysis</a> · <a href="FINAL_QA_SUMMARY.md">full QA summary</a> · <a href="CODE_REPOSITORY_LINK.txt">repository link</a>.</p>
+<div class="slide-footer"><span>Distributor Sales Pipeline · QA briefing · 05 Nov 2026</span><span>6 / 6</span></div>
+<div class="controls"><a href="#slide-5">← Previous</a><a href="#slide-1">Back to start ↑</a></div>
+</section>
+</main>
+</body>
+</html>

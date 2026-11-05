@@ -48,6 +48,7 @@ This package is current execution evidence, not release approval or full multi-l
 ## Package contents
 
 - [VALIDATION_EXECUTION_REPORT.csv](./VALIDATION_EXECUTION_REPORT.csv) — sanitized latest-run counts by validation ID.
+- [STAKEHOLDER_QA_BRIEFING.html](./STAKEHOLDER_QA_BRIEFING.html) — concise, printable stakeholder presentation.
 - [WHY_STG_CUSTOMER_REF_IS_BLOCKED.md](./WHY_STG_CUSTOMER_REF_IS_BLOCKED.md) — investigation of the customer-reference mapping block and supporting evidence.
 - [QA_SUMMARY.html](./QA_SUMMARY.html) — latest generated grouped report.
 - [LAYER_COVERAGE.csv](./LAYER_COVERAGE.csv) — executed and untested layers.
